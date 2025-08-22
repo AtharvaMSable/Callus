@@ -11,15 +11,14 @@ export default function Header() {
   type Language = {
     code: string;
     name: string;
-    flag: string;
   };
   const languages: Language[] = [
-    { code: 'EN', name: 'English', flag: "🇺🇸" },
-    { code: 'ES', name: 'Español', flag: "🇪🇸" },
-    { code: 'FR', name: 'Français', flag: "🇫🇷" },
-    { code: 'DE', name: 'Deutsch', flag: "🇩🇪" },
-    { code: 'IT', name: 'Italiano', flag: "🇮🇹" },
-    { code: 'JP', name: '日本語', flag: "🇯🇵" },
+    { code: 'EN', name: 'English' },
+    { code: 'ES', name: 'Español' },
+    { code: 'FR', name: 'Français' },
+    { code: 'DE', name: 'Deutsch' },
+    { code: 'IT', name: 'Italiano' },
+    { code: 'JP', name: '日本語' },
   ];
 
   const navItems = [
@@ -131,7 +130,7 @@ export default function Header() {
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                 className="flex items-center space-x-2 px-3 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 group"
               >
-                <span className="text-lg">{languages.find(lang => lang.code === currentLanguage)?.flag}</span>
+                <span className="text-lg">{currentLanguage}</span>
                 <span className="font-medium">{currentLanguage}</span>
                 <svg 
                   className={`w-4 h-4 transition-transform duration-300 ${isLanguageOpen ? 'rotate-180' : ''}`} 
@@ -156,7 +155,7 @@ export default function Header() {
                           : 'text-gray-300 hover:text-white'
                       }`}
                     >
-                      <span className="text-lg">{language.flag}</span>
+                      <span className="text-lg">{language.code}</span>
                       <div className="flex-1 text-left">
                         <div className="font-medium">{language.code}</div>
                         <div className="text-xs text-gray-500">{language.name}</div>
@@ -261,7 +260,7 @@ export default function Header() {
                             : 'text-gray-300 hover:text-white hover:bg-white/10 border border-transparent'
                         }`}
                       >
-                        <span className="text-base">{language.flag}</span>
+                        <span className="text-base">{language.code}</span>
                         <span className="font-medium">{language.code}</span>
                         {currentLanguage === language.code && (
                           <svg className="w-3 h-3 ml-auto text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
