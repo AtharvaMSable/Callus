@@ -8,6 +8,11 @@ export default function Header() {
   const [currentLanguage, setCurrentLanguage] = useState('EN');
   const languageRef = useRef<HTMLDivElement>(null);
 
+ type Language = {
+  code: string;
+  name: string;
+  flag: string;
+};
   const languages = [
     { code: 'EN', name: 'English',flag: "US" },
     { code: 'ES', name: 'Español',flag: "ES"  },
@@ -18,9 +23,9 @@ export default function Header() {
   ];
 
   const navItems = [
-    { name: 'SS', href: '/ss' },
+    { name: 'Shirts', href: '/ss' },
     { name: 'FW', href: '/fw' },
-    { name: 'PANTS', href: '/pants' },
+    { name: 'Pants', href: '/pants' },
     { name: 'T-Shirt', href: '/t-shirt' },
     { name: 'SALE', href: '/sale', isSpecial: true },
     { name: 'COLLECTION', href: '/collection' },
