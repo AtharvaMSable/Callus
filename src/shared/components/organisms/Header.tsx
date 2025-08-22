@@ -8,18 +8,18 @@ export default function Header() {
   const [currentLanguage, setCurrentLanguage] = useState('EN');
   const languageRef = useRef<HTMLDivElement>(null);
 
- type Language = {
-  code: string;
-  name: string;
-  flag: string;
-};
-  const languages = [
-    { code: 'EN', name: 'English',flag: "US" },
-    { code: 'ES', name: 'Español',flag: "ES"  },
-    { code: 'FR', name: 'Français' ,flag: "FR" },
-    { code: 'DE', name: 'Deutsch',flag: "DE"  },
-    { code: 'IT', name: 'Italiano',flag: "IT" },
-    { code: 'JP', name: '日本語',flag: "JP"  },
+  type Language = {
+    code: string;
+    name: string;
+    flag: string;
+  };
+  const languages: Language[] = [
+    { code: 'EN', name: 'English', flag: "🇺🇸" },
+    { code: 'ES', name: 'Español', flag: "🇪🇸" },
+    { code: 'FR', name: 'Français', flag: "🇫🇷" },
+    { code: 'DE', name: 'Deutsch', flag: "🇩🇪" },
+    { code: 'IT', name: 'Italiano', flag: "🇮🇹" },
+    { code: 'JP', name: '日本語', flag: "🇯🇵" },
   ];
 
   const navItems = [
