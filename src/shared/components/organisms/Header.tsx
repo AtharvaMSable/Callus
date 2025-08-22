@@ -9,12 +9,12 @@ export default function Header() {
   const languageRef = useRef<HTMLDivElement>(null);
 
   const languages = [
-    { code: 'EN', name: 'English' },
-    { code: 'ES', name: 'Español'  },
-    { code: 'FR', name: 'Français'  },
-    { code: 'DE', name: 'Deutsch'  },
-    { code: 'IT', name: 'Italiano' },
-    { code: 'JP', name: '日本語'  },
+    { code: 'EN', name: 'English',flag: "US" },
+    { code: 'ES', name: 'Español',flag: "ES"  },
+    { code: 'FR', name: 'Français' ,flag: "FR" },
+    { code: 'DE', name: 'Deutsch',flag: "DE"  },
+    { code: 'IT', name: 'Italiano',flag: "IT" },
+    { code: 'JP', name: '日本語',flag: "JP"  },
   ];
 
   const navItems = [
