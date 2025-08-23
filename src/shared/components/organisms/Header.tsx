@@ -4,53 +4,15 @@ import BasicButton from '../atoms/buttons/BasicButton';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState('EN');
-  const languageRef = useRef<HTMLDivElement>(null);
-
-  type Language = {
-    code: string;
-    name: string;
-  };
-  const languages: Language[] = [
-    { code: 'EN', name: 'English' },
-    { code: 'ES', name: 'Español' },
-    { code: 'FR', name: 'Français' },
-    { code: 'DE', name: 'Deutsch' },
-    { code: 'IT', name: 'Italiano' },
-    { code: 'JP', name: '日本語' },
-  ];
 
   const navItems = [
     { name: 'Shirts', href: '/ss' },
-    { name: 'FW', href: '/fw' },
     { name: 'Pants', href: '/pants' },
     { name: 'T-Shirt', href: '/t-shirt' },
     { name: 'SALE', href: '/sale', isSpecial: true },
     { name: 'COLLECTION', href: '/collection' },
     { name: 'COMMUNITY', href: '/community' },
   ];
-
-  const handleLanguageChange = (languageCode: string) => {
-    setCurrentLanguage(languageCode);
-    setIsLanguageOpen(false);
-    // Here you would typically implement actual translation logic
-    console.log(`Language changed to: ${languageCode}`);
-  };
-
-  // Close language dropdown when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (languageRef.current && !languageRef.current.contains(event.target as Node)) {
-        setIsLanguageOpen(false);
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   return (
     <header className="bg-black/95 backdrop-blur-md text-white sticky top-0 z-50 border-b border-gray-800">
@@ -120,55 +82,6 @@ export default function Header() {
               >
                 Sign Up
               </Link>
-            </div>
-            
-            <div className="h-6 w-px bg-gray-700 mx-2" />
-            
-            {/* Language Selector */}
-            <div className="relative" ref={languageRef}>
-              <button
-                onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                className="flex items-center space-x-2 px-3 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 group"
-              >
-                <span className="text-lg">{currentLanguage}</span>
-                <span className="font-medium">{currentLanguage}</span>
-                <svg 
-                  className={`w-4 h-4 transition-transform duration-300 ${isLanguageOpen ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              
-              {/* Language Dropdown */}
-              {isLanguageOpen && (
-                <div className="absolute right-0 top-full mt-2 w-48 bg-gray-900 border border-gray-700 rounded-lg shadow-2xl z-50 overflow-hidden">
-                  {languages.map((language) => (
-                    <button
-                      key={language.code}
-                      onClick={() => handleLanguageChange(language.code)}
-                      className={`w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-gray-800 transition-colors duration-200 ${
-                        currentLanguage === language.code 
-                          ? 'text-yellow-400 bg-gray-800' 
-                          : 'text-gray-300 hover:text-white'
-                      }`}
-                    >
-                      <span className="text-lg">{language.code}</span>
-                      <div className="flex-1 text-left">
-                        <div className="font-medium">{language.code}</div>
-                        <div className="text-xs text-gray-500">{language.name}</div>
-                      </div>
-                      {currentLanguage === language.code && (
-                        <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
 
@@ -244,32 +157,6 @@ export default function Header() {
                     </svg>
                     <span className="absolute top-0 right-0 w-2 h-2 bg-yellow-400 rounded-full" />
                   </button>
-                </div>
-                
-                {/* Mobile Language Selector */}
-                <div className="pt-4 border-t border-gray-800">
-                  <div className="px-4 py-2 text-xs text-gray-500 uppercase tracking-wider">Language</div>
-                  <div className="grid grid-cols-2 gap-2 px-4">
-                    {languages.map((language) => (
-                      <button
-                        key={language.code}
-                        onClick={() => handleLanguageChange(language.code)}
-                        className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm transition-all duration-200 ${
-                          currentLanguage === language.code
-                            ? 'bg-yellow-400/20 text-yellow-400 border border-yellow-400/30'
-                            : 'text-gray-300 hover:text-white hover:bg-white/10 border border-transparent'
-                        }`}
-                      >
-                        <span className="text-base">{language.code}</span>
-                        <span className="font-medium">{language.code}</span>
-                        {currentLanguage === language.code && (
-                          <svg className="w-3 h-3 ml-auto text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
-                        )}
-                      </button>
-                    ))}
-                  </div>
                 </div>
               </div>
             </nav>
